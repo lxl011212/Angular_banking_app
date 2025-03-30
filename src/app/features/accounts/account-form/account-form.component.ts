@@ -43,26 +43,38 @@ export class AccountFormComponent implements OnInit {
   onSubmit(): void {
     if (this.accountForm?.valid) {
       const accountData = this.accountForm.value;
-      this.firebaseService.createAccount(accountData).then(() => {
-        this.snackBar.open('Account created successfully!', 'Close', {
-          duration: 3000,
-          panelClass: 'success-snackbar'
-        });
-        this.accountForm.reset();
-        this.accountForm.markAsPristine();
-        this.accountForm.markAsUntouched();
-        this.accountForm.updateValueAndValidity();
-        Object.keys(this.accountForm.controls).forEach(key => {
-          this.accountForm.get(key)?.setErrors(null);
-        });
-      }).catch(err => {
-        console.error('Firebase write error:', err);
-        this.snackBar.open('Failed to create account.', 'Close', {
-          duration: 3000,
-          panelClass: 'error-snackbar'
+  
+      // Check for duplicate account name
+      this.firebaseService.getAccountNames().then(names => {
+        if (names.includes(accountData.name.toLowerCase())) {
+          this.snackBar.open('Account name already exists!', 'Close', {
+            duration: 3000,
+            panelClass: 'error-snackbar'
+          });
+          return;
+        }
+  
+        this.firebaseService.createAccount(accountData).then(() => {
+          this.snackBar.open('Account created successfully!', 'Close', {
+            duration: 3000,
+            panelClass: 'success-snackbar'
+          });
+  
+          this.accountForm.reset({
+            name: '',
+            balance: null,
+            type: ''
+          });
+          this.accountForm.markAsPristine();
+          this.accountForm.markAsUntouched();
+          this.accountForm.updateValueAndValidity();
+          Object.keys(this.accountForm.controls).forEach(key => {
+            this.accountForm.get(key)?.setErrors(null);
+          });
         });
       });
     }
   }
+  
 }
   

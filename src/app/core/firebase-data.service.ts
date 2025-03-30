@@ -14,6 +14,16 @@ export class FirebaseDataService {
   getAccounts() {
     return get(child(ref(this.db), 'accounts'));
   }
+
+  getAccountNames(): Promise<string[]> {
+    return get(child(ref(this.db), 'accounts')).then(snapshot => {
+      const data = snapshot.val();
+      return data
+        ? Object.values(data).map((acc: any) => acc.name.toLowerCase())
+        : [];
+    });
+  }
+  
   async transferFunds(fromId: string, toId: string, amount: number) {
     const dbRef = ref(this.db);
 

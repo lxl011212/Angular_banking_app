@@ -1,7 +1,10 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
-import { config } from './app/app.config.server';
+import { platformServer, renderModule } from '@angular/platform-server';
+import { AppModule } from './app/app.module';
 
-const bootstrap = () => bootstrapApplication(AppComponent, config);
+export default function render(): Promise<string> {
+  return renderModule(AppModule, {
+    document: '<app-root></app-root>',
+    url: '/'
+  });
+}
 
-export default bootstrap;

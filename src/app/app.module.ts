@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { SharedModule } from './shared/shared.module';
+import { AccountsModule } from './features/accounts/accounts.module';
+import { TransfersModule } from './features/transfers/transfers.module';
+import { HistoryModule } from './features/history/history.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,7 +17,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     BrowserAnimationsModule,
     AppRoutingModule,
     MatToolbarModule,
-    // Add SharedModule and FeatureModules here when ready
+    SharedModule,
+    AccountsModule,
+    TransfersModule,
+    HistoryModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent],

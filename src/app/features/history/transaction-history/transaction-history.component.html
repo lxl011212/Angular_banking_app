@@ -1,1 +1,27 @@
-<p>transaction-history works!</p>
+<div class="history-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Select Account</mat-label>
+      <mat-select [(ngModel)]="selectedAccount">
+        <mat-option *ngFor="let acc of accounts" [value]="acc">{{ acc }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <div *ngIf="filteredTransactions.length; else noData">
+      <mat-list>
+        <mat-list-item *ngFor="let tx of filteredTransactions">
+          <div>
+            <strong>{{ tx.type }}</strong>: ${{ tx.amount }}
+            <span *ngIf="tx.to">to {{ tx.to }}</span>
+            <span *ngIf="tx.from">from {{ tx.from }}</span>
+            <br />
+            <small>{{ tx.date | date: 'short' }}</small>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  
+    <ng-template #noData>
+      <p>No transactions available for this account.</p>
+    </ng-template>
+  </div>
+  

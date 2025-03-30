@@ -3,10 +3,12 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-custom-button',
   standalone: false,
-  template: `<button mat-raised-button [color]=\"color\">{{ label }}</button>`,
+  templateUrl: './custom-button.component.html',
+  styleUrls: ['./custom-button.component.css']
 })
 export class CustomButtonComponent {
   @Input() label: string = 'Submit';
-  @Input() color: 'primary' | 'accent' | 'warn' = 'primary';
+  @Input() color: 'primary' | 'secondary' = 'primary';
 }
+
 

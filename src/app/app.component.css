@@ -1,0 +1,23 @@
+.toolbar {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .nav-center {
+    display: flex;
+    gap: 24px;
+  }
+  
+  a[mat-button] {
+    background-color: #e0e0ec;
+    color: black;
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 8px 16px;
+    text-transform: none;
+  }
+  
+  a[mat-button]:hover {
+    background-color: #d3d3e5;
+  }
+  

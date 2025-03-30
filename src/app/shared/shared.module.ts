@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { CustomButtonComponent } from './custom-button/custom-button.component';
 
@@ -15,14 +16,16 @@ import { CustomButtonComponent } from './custom-button/custom-button.component';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule
   ],
   exports: [
     CustomButtonComponent,
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule
   ]
 })
 export class SharedModule {}
